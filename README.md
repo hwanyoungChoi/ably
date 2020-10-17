@@ -1,4 +1,9 @@
 # ably-test
+에이블리 채용 사전 과제
+
+* Ediotor: VSCode
+* Framework: Vue.js 2.6(Typescript)
+* UILibrary: ElementUI
 
 ## Project setup
 ```
@@ -9,21 +14,3 @@ npm install
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
