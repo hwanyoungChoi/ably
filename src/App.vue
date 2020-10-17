@@ -1,32 +1,100 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <header>
+      <div id="logo" @click="logoClicked">
+        A B L Y
+      </div>
+      <div id="logo-title">셀럽의 스타일을 쇼핑하다.</div>
+    </header>
+    <main>
+      <router-view />
+    </main>
+    <footer>
+      <a href="https://a-bly.com/">
+        © 2020. ABLY Corp., Inc. All rights reserved
+      </a>
+    </footer>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script lang="ts">
+
+import { Component, Vue } from 'vue-property-decorator';
+import Login from '@/views/login/index.vue';
+import ResetPassword from '@/views/reset-password/index.vue';
+
+@Component({
+  components: {
+    Login,
+    ResetPassword,
+  },
+})
+export default class App extends Vue {
+
+  // Properties
+  private isLogined: boolean = false;
+
+  // Methods
+  private logoClicked() {
+
+    this.$router.replace({ path: '/' });
+
+  }
+
 }
 
-#nav {
-  padding: 30px;
+</script>
+
+<style lang="scss">
+#app {
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #27292b;
+  max-width: 768px;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+header {
+  background-color: white;
+  color: black;
+  font-size: 30px;
+  font-weight: 900;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  #logo {
+    cursor: pointer;
+  }
+  
+  #logo-title {
+      color: darkgray;
+      font-size: 16px;
+      font-weight: 400;
+      margin-left: 10px;
+    }
+}
+
+footer {
+  color: darkgray;
+  font-size: 14px;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: absolute;
+  bottom: 0;
 
   a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+    color: darkgray;
+    text-decoration: none;
   }
 }
 </style>

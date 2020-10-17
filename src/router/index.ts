@@ -1,29 +1,41 @@
 import Vue from 'vue';
-import VueRouter, { RouteConfig } from 'vue-router';
-import Home from '../views/Home.vue';
+import VueRouter, { RawLocation, Route, RouteConfig } from 'vue-router';
+
+import Login from '@/views/login/index.vue';
+import Profile from '@/views/profile/index.vue';
+import ResetPassword from '@/views/reset-password/index.vue';
 
 Vue.use(VueRouter);
 
+const isLogined = (to: Route, from: Route, next: (to?: RawLocation) => void) => {
+
+    next({ name: 'login' });
+
+};
+
 const routes: RouteConfig[] = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  },
+    {
+      path: '/',
+      name: 'profile',
+      component: Profile,
+      beforeEnter: isLogined,
+    },
+    {
+        path: '/reset-password',
+        name: 'reset-password',
+        component: ResetPassword,
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login,
+    },
 ];
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes,
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes,
 });
 
 export default router;
