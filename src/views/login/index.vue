@@ -23,7 +23,7 @@
                     <el-button 
                         type="primary" 
                         style="width: 100%; font-weight: 700; font-size: 16px;"
-                        @click="handleLoginButtonClicked">
+                        @click="handleLoginButtonClickedAsync">
                         로그인
                     </el-button>
                     <el-button 
@@ -51,6 +51,7 @@
 <script lang="ts">
 
 import { Component, Vue } from 'vue-property-decorator';
+import { ILoginRequest, loginAsync } from '@/lib/api';
 
 interface ILoginForm {
     email: string;
@@ -67,9 +68,12 @@ export default class Login extends Vue {
     };
 
     // Methods
-    private handleLoginButtonClicked() {
+    private async handleLoginButtonClickedAsync() {
 
-        this.$router.push({ name: 'profile' });
+        const params: ILoginRequest = this.loginForm;
+        const data = await loginAsync(params);
+
+        this.$router.replace({ path: '/' });
 
     }
 
