@@ -8,22 +8,11 @@ import ResetPassword from '@/views/reset-password/index.vue';
 
 Vue.use(VueRouter);
 
-const isLogined = (to: Route, from: Route, next: (to?: RawLocation) => void) => {
-
-    if (hasAccessToken()) {
-        next();
-    }
-
-    next({ name: 'login' });
-
-};
-
 const routes: RouteConfig[] = [
+    // Home 미구현
     {
         path: '/',
-        name: 'profile',
-        component: Profile,
-        beforeEnter: isLogined,
+        name: 'home',
     },
     {
         path: '/reset-password',
@@ -37,15 +26,25 @@ const routes: RouteConfig[] = [
     },
     {
         path: '/profile',
-        name: 'h',
+        name: 'profile',
         component: Profile,
     },
 ];
 
 const router = new VueRouter({
-        mode: 'history',
-        base: process.env.BASE_URL,
-        routes,
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes,
 });
+
+// router.beforeEach((to: Route, from: Route, next: (to?: RawLocation) => void) => {
+
+//     if (hasAccessToken()) {
+//         next();
+//     } else {
+//         next({ name: 'login' });
+//     }
+
+// });
 
 export default router;
