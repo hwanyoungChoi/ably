@@ -34,8 +34,7 @@
                     </el-button>
                 </el-form-item>
                 <el-form-item>
-                    <el-button 
-                        type="danger" 
+                    <el-button
                         style="width: 100%; font-weight: 700; font-size: 16px;"
                         @click="handleRegisterEmailButtonClicked">
                         이메일로 가입하기
@@ -52,6 +51,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { ILoginRequest, loginAsync, IGetMeResponse, getMeAsync } from '@/lib/api';
 import { setAccessToken } from '@/lib/auth';
+import { Message } from 'element-ui';
 
 interface ILoginForm {
     email: string;
@@ -70,12 +70,18 @@ export default class Login extends Vue {
     // Methods
     private async handleLoginButtonClickedAsync() {
 
+        if (!this.validateLoginForm()) {
+            return;
+        }
+
         const params: ILoginRequest = this.loginForm;
         const { accessToken } = await loginAsync(params);
 
         setAccessToken(accessToken);
 
-        this.$router.replace({ path: '/' });
+        Message.success('로그인되었습니다.');
+
+        this.$router.replace({ name: 'profile' });
 
     }
 
@@ -88,6 +94,17 @@ export default class Login extends Vue {
     private handleResetPasswordButtonClicked() {
 
         this.$router.push({ name: 'reset-password' });
+
+    }
+
+    private validateLoginForm(): boolean {
+
+        if (!this.loginForm.email.trim() || !this.loginForm.password) {
+            Message.error('정확한 이메일과 비밀번호를 입력해주세요.');
+            return false;
+        }
+
+        return true;
 
     }
 

@@ -35,6 +35,7 @@ import {
     IAuthCodeRequest, IAuthCodeResponse, getAuthCodeAsync, IValidateAuthCodeRequest, validateAuthCodeAsync,
     IUpdatePasswordRequest, updatePasswordAsync,
 } from '@/lib/api';
+import { Message } from 'element-ui';
 
 @Component({
     components: {
@@ -61,6 +62,8 @@ export default class ResetPassword extends Vue {
         this.issueToken = issueToken;
         this.remainMillisecond = remainMillisecond;
 
+        Message.success('인증번호를 보내드렸습니다. :)');
+
     }
 
     private async handleStepTwoToStepThreeAsync(form: IStepTwoForm) {
@@ -73,6 +76,8 @@ export default class ResetPassword extends Vue {
 
         this.confirmToken = confirmToken;
 
+        Message.success('인증되었습니다.');
+
     }
 
     private async handleChangePasswordAsync(form: IStepThreeForm) {
@@ -83,9 +88,9 @@ export default class ResetPassword extends Vue {
         };
         await updatePasswordAsync(params);
 
-        alert('비밀번호가 재설정되었습니다. :)');
+        Message.success('비밀번호를 재설정했습니다. 변경된 비밀번호로 로그인해주세요.');
 
-        this.$router.replace({ path: '/' });
+        this.$router.replace({ name: 'login' });
 
     }
 

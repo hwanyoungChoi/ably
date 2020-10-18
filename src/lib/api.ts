@@ -98,7 +98,7 @@ export interface ILogoutResponse {
 
 export async function logoutAsync(): Promise<ILogoutResponse> {
 
-    const response = await axiosInstance.post(LOGOUT_URL, {
+    const response = await axiosInstance.post(LOGOUT_URL, {}, {
         headers: {
           Authorization: `Bearer ${getAccessToken()}`,
         },

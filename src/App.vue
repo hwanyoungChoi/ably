@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <header>
-            <div id="logo">A B L Y</div>
+            <div>A B L Y</div>
             <div id="logo-title">셀럽의 스타일을 쇼핑하다.</div>
         </header>
         <main>
@@ -68,10 +68,6 @@ export default class App extends Vue {
       display: flex;
       flex-direction: row;
       align-items: center;
-
-      #logo {
-          cursor: pointer;
-      }
       
       #logo-title {
           color: darkgray;

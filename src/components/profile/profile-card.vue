@@ -1,19 +1,16 @@
 <template>
-    <el-card 
+    <el-card
         shadow="never"
-        body-style="padding: 0;"
-        style="width: 320px;">
+        body-style="padding: 0;">
         <el-image
-            :src="profile.profileImage" 
-            style="width: 100%; height: auto;">
-            <div slot="placeholder" style="width: 100%; height: auto">
-                Loading...
-            </div>
-        </el-image>
+            :src="profile.profileImage"
+            style="width: 100%; height: auto;" />
         <div style="padding: 15px;">
-            <div>{{ profile.name }}</div>
-            <div>{{ profile.email }}</div>
-            <div>{{ profile.lastConnectedAt | toDateString }}</div>
+            <div id="name">{{ profile.name }}</div>
+            <div id="email">{{ profile.email }}</div>
+            <div id="last-connected-at">
+                마지막 접속 시간{{ profile.lastConnectedAt | toDateString }}
+            </div>
         </div>
     </el-card>
 </template>
@@ -40,5 +37,21 @@ export default class ProfileCard extends Vue {
 </script>
 
 <style scoped>
+    #name {
+        font-weight: 700;
+    }
 
+    #email {
+        font-weight: 600;
+        font-size: 14px;
+        margin-top: 3px;
+        color: gray;
+    }
+
+    #last-connected-at {
+        font-weight: 500;
+        font-size: 13px;
+        margin-top: 5px;
+        color: darkgray;
+    }
 </style>
