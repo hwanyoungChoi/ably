@@ -9,6 +9,7 @@
             <el-input
                 v-model="stepTwoForm.authCode"
                 placeholder="인증코드 입력" />
+            {{ remainMillisecond | toMillisecondsTimeString }}
         </el-form-item>
         <el-form-item>
             <el-button
@@ -24,18 +25,26 @@
 <script lang="ts">
 
 import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
+import { toMillisecondsTimeString } from '@/lib/util';
 
 export interface IStepTwoForm {
     email: string;
     authCode: string;
 }
 
-@Component
+@Component({
+    filters: {
+        toMillisecondsTimeString,
+    },
+})
 export default class StepTwo extends Vue {
 
     // Props
     @Prop({ required: true })
     private readonly email!: string;
+
+    @Prop({ required: true })
+    private readonly remainMillisecond!: number;
 
     // Properties
     private stepTwoForm: IStepTwoForm = {

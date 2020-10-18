@@ -7,9 +7,14 @@ export function isEmail(email: string): boolean {
 
 }
 
-
 export function toDateString(date: Date): string {
 
     return moment(date).format('yyyy-MM-DD hh:mm:ss');
+
+}
+
+export function toMillisecondsTimeString(ms: number): string {
+
+    return moment.utc(ms).format('mm:ss');
 
 }

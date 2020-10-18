@@ -12,8 +12,8 @@
                 <template v-if="!confirmToken">
                     <step-two
                         :email="email"
+                        :remainMillisecond="remainMillisecond"
                         @on-next="handleStepTwoToStepThreeAsync" />
-                    <div :key="remainMillisecond">{{ remainMillisecond }}</div>
                 </template>
                 <template v-else>
                     <step-three
@@ -36,6 +36,8 @@ import {
     IUpdatePasswordRequest, updatePasswordAsync,
 } from '@/lib/api';
 import { Message } from 'element-ui';
+
+const SECOND_TO_MILLISECONDS = 1000;
 
 @Component({
     components: {
@@ -62,7 +64,28 @@ export default class ResetPassword extends Vue {
         this.issueToken = issueToken;
         this.remainMillisecond = remainMillisecond;
 
+        this.startTimer();
+
         Message.success('인증번호를 보내드렸습니다. :)');
+
+    }
+
+    private startTimer() {
+
+        this.remainMillisecond -= SECOND_TO_MILLISECONDS;
+
+        const timer = setInterval(() => {
+
+            this.remainMillisecond -= SECOND_TO_MILLISECONDS;
+
+            if (this.remainMillisecond === 0) {
+                this.issueToken = '';
+                clearInterval(timer);
+
+                Message.error('인증시간이 만료되었습니다. 재인증해주세요.');
+            }
+
+        }, SECOND_TO_MILLISECONDS);
 
     }
 
