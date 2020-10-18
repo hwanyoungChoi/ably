@@ -96,7 +96,11 @@ export interface ILogoutResponse {
 
 export async function logoutAsync(): Promise<ILogoutResponse> {
 
-    const response = await axiosInstance.post(LOGOUT_URL);
+    const response = await axiosInstance.post(LOGOUT_URL, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+        },
+    });
     return response.data;
 
 }
@@ -110,7 +114,11 @@ export interface IGetMeResponse {
 
 export async function getMeAsync(): Promise<IGetMeResponse> {
 
-    const response = await axiosInstance.get(USER_URL);
+    const response = await axiosInstance.get(USER_URL, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+        },
+    });
     return response.data;
 
 }
