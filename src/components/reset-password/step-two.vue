@@ -8,7 +8,8 @@
         <el-form-item label="인증코드">
             <el-input
                 v-model="stepTwoForm.authCode"
-                placeholder="인증코드 입력" />
+                placeholder="인증코드 입력"
+                clearable />
             {{ remainMillisecond | toMillisecondsTimeString }}
         </el-form-item>
         <el-form-item>

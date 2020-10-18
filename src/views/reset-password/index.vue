@@ -35,7 +35,7 @@ import {
     IAuthCodeRequest, IAuthCodeResponse, getAuthCodeAsync, IValidateAuthCodeRequest, validateAuthCodeAsync,
     IUpdatePasswordRequest, updatePasswordAsync,
 } from '@/lib/api';
-import { Message } from 'element-ui';
+import { Message, MessageBox } from 'element-ui';
 
 const SECOND_TO_MILLISECONDS = 1000;
 
@@ -56,6 +56,11 @@ export default class ResetPassword extends Vue {
 
     // Methods
     private async handleStepOneToStepTwoAsync(email: string) {
+
+        await MessageBox.confirm(`${email}로 인증번호를 발송합니다.`, '이메일 확인', {
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
+        });
 
         const params: IAuthCodeRequest = { email };
         const { issueToken, remainMillisecond } = await getAuthCodeAsync(params);

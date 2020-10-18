@@ -11,12 +11,14 @@
                 <el-form-item label="이메일">
                     <el-input 
                         v-model="loginForm.email" 
-                        placeholder="ably247@bar.com" />
+                        placeholder="ably247@bar.com"
+                        autofocus />
                 </el-form-item>
                 <el-form-item label="비밀번호">
                     <el-input 
                         v-model="loginForm.password" 
-                        placeholder="비밀번호 입력" 
+                        placeholder="비밀번호 입력"
+                        clearable
                         show-password />
                 </el-form-item>
                 <el-form-item>

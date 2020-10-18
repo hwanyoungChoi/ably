@@ -11,13 +11,15 @@
             <el-input
                 v-model="stepThreeForm.newPassword"
                 placeholder="새 비밀번호 입력"
-                show-password />
+                show-password
+                clearable />
         </el-form-item>
         <el-form-item label="새 비밀번호 확인">
             <el-input
                 v-model="stepThreeForm.newPasswordConfirm"
                 placeholder="새 비밀번호 재입력"
-                show-password />
+                show-password
+                clearable />
         </el-form-item>
         <el-form-item>
             <el-button
