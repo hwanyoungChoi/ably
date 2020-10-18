@@ -3,7 +3,7 @@
 ## 사용 기술
 * Editor: VSCode
 * Framework: Vue.js v2.6(Typescript v3.9)
-* Library: ElementUI, axios, vue-router, vue-property-decorator
+* Library: ElementUI, axios, moment, vue-router, vue-property-decorator
 
 ## 구현 범위 (A + B + C)
 디자인 가이드는 따로 주어지지 않아, 에이블리 서비스를 참고하여 구현하였습니다.😘
