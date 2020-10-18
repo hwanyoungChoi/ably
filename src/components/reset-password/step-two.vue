@@ -10,7 +10,9 @@
                 v-model="stepTwoForm.authCode"
                 placeholder="인증코드 입력"
                 clearable />
-            {{ remainMillisecond | toMillisecondsTimeString }}
+            <div style="color: #ff5160;">
+                {{ remainMillisecond | toMillisecondsTimeString }}
+            </div>
         </el-form-item>
         <el-form-item>
             <el-button
