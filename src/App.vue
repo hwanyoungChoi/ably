@@ -1,18 +1,14 @@
 <template>
   <div id="app">
     <header>
-      <div id="logo" @click="logoClicked">
-        A B L Y
-      </div>
+      <div id="logo" @click="handleLogoClicked">A B L Y</div>
       <div id="logo-title">셀럽의 스타일을 쇼핑하다.</div>
     </header>
     <main>
       <router-view />
     </main>
     <footer>
-      <a href="https://a-bly.com/">
-        © 2020. ABLY Corp., Inc. All rights reserved
-      </a>
+      <a href="https://a-bly.com/">© 2020. ABLY Corp., Inc. All rights reserved</a>
     </footer>
   </div>
 </template>
@@ -35,7 +31,7 @@ export default class App extends Vue {
   private isLogined: boolean = false;
 
   // Methods
-  private logoClicked() {
+  private handleLogoClicked() {
 
     this.$router.replace({ path: '/' });
 

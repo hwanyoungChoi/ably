@@ -9,16 +9,20 @@ Vue.use(VueRouter);
 
 const isLogined = (to: Route, from: Route, next: (to?: RawLocation) => void) => {
 
+    if (sessionStorage.getItem('accessToken')) {
+        next();
+    }
+
     next({ name: 'login' });
 
 };
 
 const routes: RouteConfig[] = [
     {
-      path: '/',
-      name: 'profile',
-      component: Profile,
-      beforeEnter: isLogined,
+        path: '/',
+        name: 'profile',
+        component: Profile,
+        beforeEnter: isLogined,
     },
     {
         path: '/reset-password',
@@ -33,9 +37,9 @@ const routes: RouteConfig[] = [
 ];
 
 const router = new VueRouter({
-    mode: 'history',
-    base: process.env.BASE_URL,
-    routes,
+        mode: 'history',
+        base: process.env.BASE_URL,
+        routes,
 });
 
 export default router;

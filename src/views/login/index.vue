@@ -1,7 +1,7 @@
 <template>
     <div id="login">
         <el-card
-            shadow="hover"
+            shadow="never"
             style="width: 320px;"
             body-style="padding-bottom: 0;">
             <el-form 
@@ -40,7 +40,6 @@
                         @click="handleRegisterEmailButtonClicked">
                         이메일로 가입하기
                     </el-button>
-                    
                 </el-form-item>
             </el-form>
         </el-card>

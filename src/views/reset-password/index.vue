@@ -1,15 +1,12 @@
 <template>
     <div id="reset-password">
-        <div id="title">
-            비밀번호 재설정
-        </div>
+        <div id="title">비밀번호 재설정</div>
         <el-card
-            shadow="hover"
+            shadow="never"
             style="width: 320px;"
             body-style="padding-bottom: 0;">
             <template v-if="!issueToken">
-                <step-one
-                    @on-next="handleStepOneToStepTwoAsync" />
+                <step-one @on-next="handleStepOneToStepTwoAsync" />
             </template>
             <template v-else>
                 <template v-if="!confirmToken">
