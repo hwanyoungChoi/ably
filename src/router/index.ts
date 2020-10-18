@@ -34,6 +34,11 @@ const routes: RouteConfig[] = [
         name: 'login',
         component: Login,
     },
+    {
+        path: '/profile',
+        name: 'h',
+        component: Profile,
+    }
 ];
 
 const router = new VueRouter({

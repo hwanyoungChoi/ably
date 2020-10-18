@@ -1,15 +1,25 @@
 <template>
     <div id="profile">
-        프로필
+        <user-profile-card :profile="profile" />
+        <el-button 
+            type="danger"
+            @click="handleLogoutButtonClickedAsync">
+            로그아웃
+        </el-button>
     </div>
 </template>
 
 <script lang="ts">
 
 import { Component, Vue } from 'vue-property-decorator';
-import { getMeAsync, IGetMeResponse } from '@/lib/api';
+import { getMeAsync, IGetMeResponse, logoutAsync } from '@/lib/api';
+import UserProfileCard from '@/components/profile/user-profile-card.vue';
 
-@Component
+@Component({
+    components: {
+        UserProfileCard,
+    },
+})
 export default class Profile extends Vue {
 
     // Properties
@@ -29,6 +39,26 @@ export default class Profile extends Vue {
 
     }
 
+    // Methods
+    private async handleLogoutButtonClickedAsync() {
+
+        await logoutAsync();
+
+        sessionStorage.removeItem('accessToken');
+
+        this.$router.replace({ path: '/' });
+
+    }
+
 }
 
 </script>
+
+<style scoped>
+    #profile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+</style>

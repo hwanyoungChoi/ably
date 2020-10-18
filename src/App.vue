@@ -79,6 +79,11 @@ header {
     }
 }
 
+main {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 footer {
   color: darkgray;
   font-size: 14px;
