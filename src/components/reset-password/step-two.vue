@@ -69,6 +69,11 @@ export default class StepTwo extends Vue {
             return false;
         }
 
+        if (this.stepTwoForm.authCode.length !== 6) {
+            alert('인증코드는 6자리입니다.');
+            return false;
+        }
+
         return true;
 
     }

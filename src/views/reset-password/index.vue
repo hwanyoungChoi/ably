@@ -86,6 +86,8 @@ export default class ResetPassword extends Vue {
         };
         const data = await updatePasswordAsync(params);
 
+        alert('비밀번호가 재설정되었습니다. :)');
+
         this.$router.replace({ path: '/' });
 
     }
