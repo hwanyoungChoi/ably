@@ -9,7 +9,7 @@ export function isEmail(email: string): boolean {
 
 export function toDateString(date: Date): string {
 
-    return moment(date).format('yyyy-MM-DD hh:mm:ss');
+    return moment(date).format('yyyy-MM-DD HH:mm:ss');
 
 }
 
