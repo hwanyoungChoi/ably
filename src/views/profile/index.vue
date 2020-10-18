@@ -1,6 +1,6 @@
 <template>
     <div id="profile">
-        <user-profile-card :profile="profile" />
+        <profile-card :profile="profile" />
         <el-button 
             type="danger"
             @click="handleLogoutButtonClickedAsync">
@@ -13,11 +13,12 @@
 
 import { Component, Vue } from 'vue-property-decorator';
 import { getMeAsync, IGetMeResponse, logoutAsync } from '@/lib/api';
-import UserProfileCard from '@/components/profile/user-profile-card.vue';
+import ProfileCard from '@/components/profile/profile-card.vue';
+import { clearAuth } from '@/lib/auth';
 
 @Component({
     components: {
-        UserProfileCard,
+        ProfileCard,
     },
 })
 export default class Profile extends Vue {
@@ -43,8 +44,7 @@ export default class Profile extends Vue {
     private async handleLogoutButtonClickedAsync() {
 
         await logoutAsync();
-
-        sessionStorage.removeItem('accessToken');
+        clearAuth();
 
         this.$router.replace({ path: '/' });
 

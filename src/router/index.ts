@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter, { RawLocation, Route, RouteConfig } from 'vue-router';
 
+import { hasAccessToken } from '@/lib/auth';
 import Login from '@/views/login/index.vue';
 import Profile from '@/views/profile/index.vue';
 import ResetPassword from '@/views/reset-password/index.vue';
@@ -9,7 +10,7 @@ Vue.use(VueRouter);
 
 const isLogined = (to: Route, from: Route, next: (to?: RawLocation) => void) => {
 
-    if (sessionStorage.getItem('accessToken')) {
+    if (hasAccessToken()) {
         next();
     }
 
@@ -38,7 +39,7 @@ const routes: RouteConfig[] = [
         path: '/profile',
         name: 'h',
         component: Profile,
-    }
+    },
 ];
 
 const router = new VueRouter({

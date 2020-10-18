@@ -11,7 +11,6 @@
             <el-button
                 type="primary"
                 style="width: 100%; font-weight: 700; font-size: 16px;"
-                :disabled="!stepOneForm.email"
                 @click="handleNextButtonClicked">
                 다음
             </el-button>

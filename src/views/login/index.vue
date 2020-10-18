@@ -51,6 +51,7 @@
 
 import { Component, Vue } from 'vue-property-decorator';
 import { ILoginRequest, loginAsync, IGetMeResponse, getMeAsync } from '@/lib/api';
+import { setAccessToken } from '@/lib/auth';
 
 interface ILoginForm {
     email: string;
@@ -70,9 +71,9 @@ export default class Login extends Vue {
     private async handleLoginButtonClickedAsync() {
 
         const params: ILoginRequest = this.loginForm;
-        const data = await loginAsync(params);
+        const { accessToken } = await loginAsync(params);
 
-        sessionStorage.setItem('accessToken', data.accessToken);
+        setAccessToken(accessToken);
 
         this.$router.replace({ path: '/' });
 

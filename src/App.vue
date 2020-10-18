@@ -27,9 +27,6 @@ import ResetPassword from '@/views/reset-password/index.vue';
 })
 export default class App extends Vue {
 
-  // Properties
-  private isLogined: boolean = false;
-
   // Methods
   private handleLogoClicked() {
 

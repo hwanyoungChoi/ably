@@ -29,7 +29,7 @@ import { toDateString } from '@/lib/util';
         toDateString,
     },
 })
-export default class UserProfileCard extends Vue {
+export default class ProfileCard extends Vue {
 
     // Props
     @Prop({ required: true })

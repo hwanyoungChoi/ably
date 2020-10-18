@@ -1,6 +1,13 @@
 import axios from 'axios';
 
+import { getAccessToken } from './auth';
+
 const API_SERVER_HOST = process.env.VUE_APP_API_SERVER_HOST;
+
+const RESET_PASSWORD_URL = '/api/reset-password';
+const LOGIN_URL = '/api/login';
+const LOGOUT_URL = '/api/logout';
+const USER_URL = '/api/user';
 
 const axiosInstance = axios.create({
     baseURL: API_SERVER_HOST,
@@ -9,11 +16,6 @@ const axiosInstance = axios.create({
     },
     timeout: 5000,
 });
-
-const RESET_PASSWORD_URL = '/api/reset-password';
-const LOGIN_URL = '/api/login';
-const LOGOUT_URL = '/api/logout';
-const USER_URL = '/api/user';
 
 export interface IAuthCodeRequest {
     email: string;
@@ -98,7 +100,7 @@ export async function logoutAsync(): Promise<ILogoutResponse> {
 
     const response = await axiosInstance.post(LOGOUT_URL, {
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+          Authorization: `Bearer ${getAccessToken()}`,
         },
     });
     return response.data;
@@ -116,7 +118,7 @@ export async function getMeAsync(): Promise<IGetMeResponse> {
 
     const response = await axiosInstance.get(USER_URL, {
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+          Authorization: `Bearer ${getAccessToken()}`,
         },
     });
     return response.data;

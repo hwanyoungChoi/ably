@@ -55,11 +55,11 @@ export default class ResetPassword extends Vue {
     private async handleStepOneToStepTwoAsync(email: string) {
 
         const params: IAuthCodeRequest = { email };
-        const data = await getAuthCodeAsync(params);
+        const { issueToken, remainMillisecond } = await getAuthCodeAsync(params);
 
         this.email = email;
-        this.issueToken = data.issueToken;
-        this.remainMillisecond = data.remainMillisecond;
+        this.issueToken = issueToken;
+        this.remainMillisecond = remainMillisecond;
 
     }
 
@@ -69,9 +69,9 @@ export default class ResetPassword extends Vue {
             issueToken: this.issueToken,
             ...form,
         };
-        const data = await validateAuthCodeAsync(params);
+        const { confirmToken } = await validateAuthCodeAsync(params);
 
-        this.confirmToken = data.confirmToken;
+        this.confirmToken = confirmToken;
 
     }
 
@@ -81,7 +81,7 @@ export default class ResetPassword extends Vue {
             confirmToken: this.confirmToken,
             ...form,
         };
-        const data = await updatePasswordAsync(params);
+        await updatePasswordAsync(params);
 
         alert('비밀번호가 재설정되었습니다. :)');
 
