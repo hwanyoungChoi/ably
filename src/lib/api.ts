@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Message } from 'element-ui';
 
 import { getAccessToken } from './auth';
 
@@ -16,6 +17,15 @@ const axiosInstance = axios.create({
     },
     timeout: 5000,
 });
+
+axiosInstance.interceptors.response.use(
+    response => {
+        return response;
+    },
+    error => {
+        Message.error(error.response.data.error.message);
+    }
+);
 
 export interface IAuthCodeRequest {
     email: string;
