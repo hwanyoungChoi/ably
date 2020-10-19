@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Message } from 'element-ui';
 
 import { getAccessToken } from './auth';
+import { showLoading } from './util';
 
 const API_SERVER_HOST = process.env.VUE_APP_API_SERVER_HOST;
 
@@ -18,13 +19,22 @@ const axiosInstance = axios.create({
     timeout: 5000,
 });
 
+axiosInstance.interceptors.request.use(
+    (config) => {
+        showLoading(true);
+        return config;
+    },
+);
+
 axiosInstance.interceptors.response.use(
-    response => {
+    (response) => {
+        showLoading(false);
         return response;
     },
-    error => {
+    (error) => {
+        showLoading(false);
         Message.error(error.response.data.error.message);
-    }
+    },
 );
 
 export interface IAuthCodeRequest {

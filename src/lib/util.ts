@@ -1,3 +1,4 @@
+import { Loading } from 'element-ui';
 import moment from 'moment';
 
 export function isEmail(email: string): boolean {
@@ -16,5 +17,20 @@ export function toDateString(date: Date): string {
 export function toMillisecondsTimeString(ms: number): string {
 
     return moment.utc(ms).format('mm:ss');
+
+}
+
+export function showLoading(isLoading: boolean) {
+
+    const loading = Loading.service({
+        lock: true,
+        text: '쇼핑은 에이블리',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0)',
+    });
+
+    if (!isLoading) {
+        loading.close();
+    }
 
 }
