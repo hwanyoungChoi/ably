@@ -16,16 +16,9 @@
 <script lang="ts">
 
 import { Component, Vue } from 'vue-property-decorator';
-import Login from '@/views/login/index.vue';
-import ResetPassword from '@/views/reset-password/index.vue';
 import { hasAccessToken } from './lib/auth';
 
-@Component({
-    components: {
-        Login,
-        ResetPassword,
-    },
-})
+@Component
 export default class App extends Vue {
 
   // Lifecycle
